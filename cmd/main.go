@@ -1,17 +1,18 @@
 package main
 
-import "fmt"
-
-func add(x, y, z int) int {
-	return x + y + z
-}
-
-func swap(x, y string) (string, string) {
-	return y, x
-}
+import (
+	"fmt"
+	"net/http"
+)
 
 func main() {
-	fmt.Println(add(20, 13, 3))
-	a, b := swap("hello", "world")
-	fmt.Println(a, b)
+	http.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("Hello?"))
+	})
+
+	fmt.Println("Running in port 8080")
+	
+	if err := http.ListenAndServe(":8080", nil); err != nil {
+		panic(err)
+	}
 }
