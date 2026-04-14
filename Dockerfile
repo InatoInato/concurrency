@@ -15,7 +15,7 @@ COPY . .
 # Build the Go app
 # CGO_ENABLED=0 builds a statically linked binary
 # GOOS=linux specifies the target operating system
-RUN CGO_ENABLED=0 GOOS=linux go build -o /concurrency ./cmd/main.go
+RUN CGO_ENABLED=0 GOOS=linux go build -o /concurrency ./cmd/server/main.go
 
 # Production Stage
 FROM alpine:latest
